@@ -12,6 +12,8 @@ class MdTpl {
 	private $has_code = false;
 	//代码高亮显示的皮肤
 	public $code_skin = 'emacs';
+	//静态文件和皮肤的保存位置
+	public $static_dir = '/static';
 
 	//核心的解析模板方法
 	private function _tpl ($str){
@@ -95,13 +97,13 @@ class MdTpl {
 		$str = '';
 		//加载公共的文件
 		if(!$this->has_code){
-			$str = '<script type="text/javascript" src="sl/scripts/shCore.js"></script>';
-			$str .= '<link type="text/css" rel="stylesheet" href="sl/styles/shCore'.ucfirst($this->code_skin).'.css"/>';
+			$str = '<script type="text/javascript" src="'.$this->static_dir.'/sl/scripts/shCore.js"></script>';
+			$str .= '<link type="text/css" rel="stylesheet" href="'.$this->static_dir.'/sl/styles/shCore'.ucfirst($this->code_skin).'.css"/>';
 			$str .= '<script type="text/javascript">SyntaxHighlighter.config.bloggerMode = true;SyntaxHighlighter.all();</script>';
 		}
 		//加载此类的文件
 		if(! isset($this->has_code[$param[1]])){
-			$str .= '<script type="text/javascript" src="sl/scripts/shBrush'.ucfirst($param[1]).'.js"></script>';
+			$str .= '<script type="text/javascript" src="'.$this->static_dir.'/sl/scripts/shBrush'.ucfirst($param[1]).'.js"></script>';
 			$this->has_code[$param[1]] = true;
 		}
 		return $str.'<pre class="brush:'.$param[1].'">'.$param[2].'</pre>';
@@ -129,7 +131,7 @@ class MdTpl {
 		}
 		//如果需要支持普通文本皮肤，则加载
 		if($this->text_skin){
-			$str .= '<link type="text/css" rel="stylesheet" href="skin/'.$this->text_skin.'.css"/>';
+			$str .= '<link type="text/css" rel="stylesheet" href="'.$this->static_dir.'/skin/'.$this->text_skin.'.css"/>';
 		}
 		$str = $this->_tpl($str);
 		if($view){
