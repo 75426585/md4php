@@ -1,24 +1,18 @@
+### markdown for php : 一个markdown的php解析器
 ---------------------
 > 对样式的支持
-- [x] 1.  aaaaaaaaaaaaaaaa
-- [ ] 2. ~~bbbbbbbbbbb~~
-- [x] 3. ==ccccccc==
-- [x] 4. ++dddddddddd++
-
----
-
-- 对代码的支持
-```sql
-update test set test_days  =
-ceil((test_out_time - unix_timestamp(from_unixtime(test_into_time,'%Y-%m-%d')))/86400) 
-where last_out_time > 0
-```
+[x] 1. 普通的文字
+[ ] 2. ~~删除的文字~~
+[x] 3. ==着重显示==
+[x] 4. ++下划线显示++
 
 >对副标题的支持
 
 >列表的支持 
--  列表
--  列表
+-  一级分类1
+  - 二级分类1
+  - 二级分类2
+-  一级分类2
 
 ```php
 header("Content-type:text/html;charset=utf-8");
